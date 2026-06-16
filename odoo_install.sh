@@ -1,7 +1,6 @@
 #!/bin/bash
-
 ################################################################################
-# Odoo 19 Installation Script for Ubuntu 24.04 (could be used for other version too)
+# Odoo 19 Installation Script for Ubuntu 24.04 (could be used for other version too) AND POSTGRESQL LATEST 18.X VERSION ADVANCE DATABASE SYSTEM
 # Author: TEJAS TANK
 # ODOO specific user, so can run multiple odoo as well.
 #-------------------------------------------------------------------------------
@@ -119,12 +118,12 @@ if [ "$INSTALL_POSTGRESQL_SIXTEEN" = "True" ]; then
     sudo curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
     sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
     sudo apt-get update -y
-    sudo apt-get install -y postgresql-16
+    sudo apt-get install -y postgresql-18
     if [ "$IS_ENTERPRISE" = "True" ]; then
       # Ensure PostgreSQL is running before pgvector setup (Ubuntu 24.04 uses systemd)
       sudo systemctl start postgresql || true
       # pgvector is only needed for Enterprise AI features
-      sudo apt-get install -y postgresql-16-pgvector
+      sudo apt-get install -y postgresql-18-pgvector
       # Wait for PostgreSQL to become available
       until sudo -u postgres pg_isready >/dev/null 2>&1; do sleep 1; done
       # Create vector extension using a heredoc to avoid any quoting issues
