@@ -311,5 +311,7 @@ echo "\${NAME}."
 ;;
 restart|force-reload)
 echo -n "Restarting \${DESC}: "
-start-stop-daemon --stop --quiet --pidfile \$PIDF#!/bin/bash
+start-stop-daemon --stop --quiet --pidfile \$PIDF
+
+
 
